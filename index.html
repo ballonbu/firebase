@@ -3,117 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Gestion de usuarios</title>
+    <title>CRUD de Tareas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css">
 </head>
 
 <body>
-
-    <h1>Area de registro</h1>
-    <input type="email" id="email" placeholder="Coloca tu email aqui">
-    <input type="password" id="pass" placeholder="Coloca tu password aqui">
-    <button onclick="enviar();">Registrar</button>
-    <h1 id="login"></h1>
-
-    <h1>Area de acceso</h1>
-    <input type="email" id="emailAcc" placeholder="Coloca tu email aqui">
-    <input type="password" id="passAcc" placeholder="Coloca tu password aqui">
-    <button onclick="acceso();">Acceder</button>
-
-
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyCuspRDNkJxRg5vvTtMgFs8pDYTrKM4Jo8",
-            authDomain: "autenticacion-d248c.firebaseapp.com",
-            projectId: "autenticacion-d248c",
-            storageBucket: "autenticacion-d248c.appspot.com",
-            messagingSenderId: "611007069110",
-            appId: "1:611007069110:web:fdb9e84604c3d5aaf29f17",
-            measurementId: "G-5NZVKHQK4C"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-
-        function enviar() {
-            var email = document.getElementById("email").value;
-            var loquetudesees = document.getElementById("pass").value;
-
-            //codigo firebase: inicio
-            firebase.auth().createUserWithEmailAndPassword(email, loquetudesees)
-                .then((userCredential) => {
-                    // Signed in
-                    var user = userCredential.user;
-                    // ...
-                })
-                .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    // ..
-                    alert(errorMessage);
-                });
-            //codigo firebase: fin
-        }
-
-        function acceso() {
-            var email = document.getElementById("emailAcc").value;
-            var pass = document.getElementById("passAcc").value;
-
-            //codigo firebase: inicio
-            firebase.auth().signInWithEmailAndPassword(email, pass)
-                .then((userCredential) => {
-                    // Signed in
-                    var user = userCredential.user;
-                    // ...
-                    alert("Accediste");
-                })
-                .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    alert(errorMessage);
-                });
-            //codigo firebase: fin
-
-
-        }
-
-        function cerrar() {
-            firebase.auth().signOut()
-                .then(function () {
-                    console.log("salir");
-                })
-                .catch(function (error) {
-                    console.log("error");
-                })
-        }
-
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
-                var uid = user.uid;
-                // ...
-                //document.getElementById("login").innerHTML = "Logueado " + user.email;
-                document.getElementById("login").innerHTML =
-                    `<p>Logueado ` + user.email + `</p>` +
-                    `<button onclick=cerrar();>Cerrar sesion</button>`;
-            } else {
-                // User is signed out
-                // ...
-                document.getElementById("login").innerHTML = "No logueado";
-            }
-        });
-    </script>
+    <div class="contaxxiner">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-body">
+                    <form id="task-form">
+                        <div class="form-group">
+                            <input type="text" id="task-title" class="form-control" placeholder="Titulo de la tarea">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="task-description" rows="3" class="form-control" placeholder="Descripcion de la tarea"></textarea>
+                        </div>
+                        <button class="btn btn-primary" id="btn-task-form">
+                            Guardar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
