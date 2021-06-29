@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <title>CRUD de Tareas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css">
+
 </head>
 
 <body>
-    <div class="contaxxiner">
+    <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="card-body">
@@ -17,7 +18,8 @@
                             <input type="text" id="task-title" class="form-control" placeholder="Titulo de la tarea">
                         </div>
                         <div class="form-group">
-                            <textarea id="task-description" rows="3" class="form-control" placeholder="Descripcion de la tarea"></textarea>
+                            <textarea id="task-description" rows="3" class="form-control"
+                                placeholder="Descripcion de la tarea"></textarea>
                         </div>
                         <button class="btn btn-primary" id="btn-task-form">
                             Guardar
@@ -25,9 +27,34 @@
                     </form>
                 </div>
             </div>
+            <div id="task-container" class="col-md-6">
+
+            </div>
         </div>
     </div>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC_m_b3rj6_PbTfljpGFttXWzafg1Ksfrc",
+            authDomain: "basededatos-cc401.firebaseapp.com",
+            projectId: "basededatos-cc401",
+            storageBucket: "basededatos-cc401.appspot.com",
+            messagingSenderId: "227265667023",
+            appId: "1:227265667023:web:94ab7b2c0944a44670fcba"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="/js/basededatos.js"></script>
 </body>
 
 </html>
